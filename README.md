@@ -1,3 +1,10 @@
-# reactBlog
-react+webpack+node+router搭建一个自己的博客
-先写一个评论留言的功能
+# reactSwiper
+主要三个函数分别对应onTouchStart，onTouchMove，onTouchEnd事件。
+
+　　当开始TouchStart时，记录触控时的当前pageX值，并阻止触控时的默认事件，这样默认的事件就不会发生，图片只会随着代码移动。这时候改变一个state，是消除-webkit-transition: 0.15s all ease这个样式，因为在安卓机上，有这个效果时会导致很卡。
+
+　　接下来在滑动过程中，就是图片滑动距离的计算了，每张图片都是整屏的宽度，所以用已经滑过的距离减去开始的触控点位置和移动的距离的差，就是图片随手指一起移动的距离。
+
+　　最后结束后根据这个差值的正负来判断图片往那边移动，来实现呈现的效果。
+
+　　这里用translate3d其实用2d也是可以的，但是这样可以强制用手机的GPU渲染，会更流畅，安卓机上一些奇葩的滚动渲染如果有奇葩的问题出现，可以加上transform: translateZ(0)，这样会用GPU渲染，一般问题都会解决。
